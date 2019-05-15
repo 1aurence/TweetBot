@@ -22,19 +22,29 @@ client.on("ready", () => {
 
     if (primaryCommand == "help") {
       helpCommand(arguments, receivedMessage);
-    } else if (primaryCommand == "hashtag") {
-      getTweetsFromHashtag(arguments, receivedMessage);
+    } else if (primaryCommand == "tweets") {
+      getTweets(arguments, receivedMessage);
     } else {
       receivedMessage.channel.send(
         "I don't understand the command. Try `!help` or `!multiply`"
       );
     }
   }
-  function getTweetsFromHashtag(arguments, receivedMessage) {
+  function getTweets(arguments, receivedMessage) {
     let [query, amount] = arguments;
+    if (arguments.length == 1) {
+      return receivedMessage.channel.send(
+        "Warning: you must specify the amount of Tweets to be returned"
+      );
+    }
     if (arguments.length > 2) {
       receivedMessage.channel.send(
         `${receivedMessage.author.toString()} too many arguments`
+      );
+    }
+    if (amount > 10) {
+      return receivedMessage.channel.send(
+        "Warning: the maximum amount of Tweets to be returned is 10"
       );
     }
     twit.get("search/tweets", { q: `'#${query}` }, function(
