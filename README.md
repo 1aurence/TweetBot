@@ -5,5 +5,5 @@ TweetBot is a Discord bot designed for retreiving information from Twitter to be
 
 | Command | Description |
 | --- | --- |
-| !tweets [QUERY] [AMOUNT] | Returns tweets by query `!tweets #news 10` |
+| !tweets [QUERY] [AMOUNT] | Returns specified amount of tweets by query `!tweets #news 10` |
 | !help | List all commands |
